@@ -1,40 +1,114 @@
+<?php
+// Daftar file banner
+$banners = [
+    ['name' => 'Spanduk-Seblak.PNG', 'commit' => 'Rename banner 3.PNG to banner/Spanduk-Seblak.PNG', 'date' => '31 minutes ago'],
+    ['name' => 'Spanduk-es-jeruk.PNG', 'commit' => 'Rename banner 2.PNG to banner/Spanduk-es-jeruk.PNG', 'date' => '32 minutes ago'],
+    ['name' => 'Spanduk-sembako1.PNG', 'commit' => 'Rename banner 1.PNG to banner/Spanduk-sembako1.PNG', 'date' => '31 minutes ago'],
+    ['name' => 'spanduk-aneka-minuman.png', 'commit' => 'Rename Aneka Minuman.jpg to spanduk-aneka-minuman.png', 'date' => '26 minutes ago'],
+    ['name' => 'spanduk-es-kelapa.png', 'commit' => 'Rename spanduk-es-kelapa.png to spanduk-es-kelapa.png', 'date' => '26 minutes ago'],
+    ['name' => 'spanduk-esjeruk2.PNG', 'commit' => 'Rename Kedai Raisa.PNG to banner/spanduk-esjeruk2.PNG', 'date' => '30 minutes ago'],
+    ['name' => 'spanduk-pendaftaran-sekolah.png', 'commit' => 'Update and rename spanduk-pendaftaran-sekolah to spanduk-pendaftaran-...', 'date' => '29 minutes ago'],
+    ['name' => 'spanduk-percetakan.png', 'commit' => 'Rename Untitled-1.png to banner/spanduk-percetakan.png', 'date' => '30 minutes ago'],
+];
+
+// Pisahkan vertikal & landscape
+$vertical = [];
+$landscape = [];
+
+foreach ($banners as $banner) {
+    if (preg_match('/^(Spanduk|spanduk)-seblak|spanduk-esjeruk2|Spanduk-sembako1/i', $banner['name'])) {
+        $vertical[] = $banner;
+    } else {
+        $landscape[] = $banner;
+    }
+}
+?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Portfolio Banner</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    h1 {
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Banner</title>
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+h2 {
+    margin-top: 40px;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+.banner-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+.banner-card:hover {
+    transform: translateY(-5px);
+}
+.banner-card img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.banner-card .name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.banner-card .commit {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.banner-card .date {
+    font-size: 0.8em;
+    color: #999;
+}
+</style>
 </head>
 <body>
-  <h1>Koleksi Banner</h1>
-  <div class="gallery">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/Spanduk-Seblak.PNG" alt="Spanduk Seblak">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/Spanduk-es-jeruk.PNG" alt="Spanduk Es Jeruk">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/Spanduk-sembako1.PNG" alt="Spanduk Sembako">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/spanduk-aneka-minuman.png" alt="Spanduk Aneka Minuman">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/spanduk-es-kelapa.png" alt="Spanduk Es Kelapa">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/spanduk-esjeruk2.PNG" alt="Spanduk Es Jeruk 2">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/spanduk-pendaftaran-sekolah.png" alt="Spanduk Pendaftaran Sekolah">
-    <img src="https://raw.githubusercontent.com/ali-ridlo/Portfolio/main/banner/spanduk-percetakan.png" alt="Spanduk Percetakan">
-  </div>
+
+<h2>Vertikal</h2>
+<div class="banner-grid">
+<?php foreach($vertical as $b): ?>
+    <div class="banner-card">
+        <img src="banner/<?php echo $b['name']; ?>" alt="<?php echo $b['name']; ?>">
+        <div class="name"><?php echo $b['name']; ?></div>
+        <div class="commit"><?php echo $b['commit']; ?></div>
+        <div class="date"><?php echo $b['date']; ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
+<h2>Landscape</h2>
+<div class="banner-grid">
+<?php foreach($landscape as $b): ?>
+    <div class="banner-card">
+        <img src="banner/<?php echo $b['name']; ?>" alt="<?php echo $b['name']; ?>">
+        <div class="name"><?php echo $b['name']; ?></div>
+        <div class="commit"><?php echo $b['commit']; ?></div>
+        <div class="date"><?php echo $b['date']; ?></div>
+    </div>
+<?php endforeach; ?>
+</div>
+
 </body>
 </html>
